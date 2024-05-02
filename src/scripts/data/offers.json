@@ -1,0 +1,15 @@
+[
+  {
+    "productName": "Baked Beans",
+    "rule": {
+      "buyQuantity": 2,
+      "freeQuantity": 1
+    }
+  },
+  {
+    "productName": "Sardines",
+    "rule": {
+      "percentage": 25
+    }
+  }
+]

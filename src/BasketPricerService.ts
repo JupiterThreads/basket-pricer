@@ -1,7 +1,7 @@
 import Decimal from "decimal.js";
 import { Catalogue, Offer, Basket, BasketItem, CurrencyOptions } from "./types";
-import { requestSchema } from './schemas';
-import OrderItem from "./OrderItem";
+import { requestSchema } from './schemas.ts';
+import OrderItem from "./OrderItem.ts";
 
 Decimal.set({ precision: 3, rounding: Decimal.ROUND_UP });
 

@@ -1,6 +1,6 @@
-import { Product, ProductVariant, Offer, BuyOffer } from './types';
+import { Product, ProductVariant, Offer, BuyOffer } from './types.ts';
 import { Decimal } from 'decimal.js';
-import { BuyGetXFreeOffer, PercentageDiscountOffer } from './offers';
+import { BuyGetXFreeOffer, PercentageDiscountOffer } from './offers.ts';
 
 Decimal.set({ precision: 3, rounding: Decimal.ROUND_UP });
 
