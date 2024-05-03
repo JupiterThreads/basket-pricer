@@ -81,7 +81,7 @@ export default class OrderItem {
     }, []) ?? [];
   }
 
-  setDiscount() {
+  private setDiscount() {
     const percentageOffers = this.getPercentageOffers();
     const buyXOffers = this.getBuyXOffers();
 
