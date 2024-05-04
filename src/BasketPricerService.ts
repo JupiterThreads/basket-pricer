@@ -35,9 +35,9 @@ export default class BasketPricerService {
 
     this.orderItems = this.createOrderItems();
 
-    this._subTotal = this.calculateSubTotal();
-    this._total = this.calculateTotal();
-    this._discount = this.calculateDiscount();
+    this._subTotal = this.calculate('subTotal');
+    this._total = this.calculate('total');
+    this._discount = this.calculate('discount');
   }
 
   get subTotal(): string {
@@ -110,23 +110,9 @@ export default class BasketPricerService {
     return this.offers.filter((offer) => offer.productName === productName);
   }
 
-  private calculateSubTotal(): Decimal {
+  private calculate(key: string): Decimal {
     return this.orderItems.reduce((acc: Decimal, item: OrderItem) => {
-      const total = acc.plus(item.subTotal);
-      return total;
-    }, new Decimal(0));
-  }
-
-  private calculateTotal(): Decimal {
-    return this.orderItems.reduce((acc: Decimal, item: OrderItem) => {
-      const total = acc.plus(item.total);
-      return total;
-    }, new Decimal(0));
-  }
-
-  private calculateDiscount(): Decimal {
-    return this.orderItems.reduce((acc: Decimal, item: OrderItem) => {
-      const total = acc.plus(item.discount);
+      const total = acc.plus((item as any)[key]);
       return total;
     }, new Decimal(0));
   }

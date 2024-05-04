@@ -41,7 +41,7 @@ export default class OrderItem {
     this.variant = variant;
     this.offers = offers;
 
-    this.setDiscount();
+    this.discount = this.calculateDiscount();
   }
 
   get price(): Decimal {
@@ -81,7 +81,7 @@ export default class OrderItem {
     }, []) ?? [];
   }
 
-  private setDiscount() {
+  private calculateDiscount(): Decimal {
     const percentageOffers = this.getPercentageOffers();
     const buyXOffers = this.getBuyXOffers();
 
@@ -95,6 +95,6 @@ export default class OrderItem {
     if (buyXOffers.length > 0) {
       buyXOfferDiscount = new BuyGetXFreeOffer(this.quantity, this.price, buyXOffers, this.product?.variants).discount();
     }
-    this.discount = percentageDiscount.greaterThan(buyXOfferDiscount) ? percentageDiscount : buyXOfferDiscount;
+    return percentageDiscount.greaterThan(buyXOfferDiscount) ? percentageDiscount : buyXOfferDiscount;
   }
 }
