@@ -2,25 +2,25 @@ import { z } from 'zod';
 
 export const productVariantSchema = z.object({
     name: z.string(),
-    price: z.number(),
+    price: z.number().positive(),
 });
 
 export const productSchema = z.object({
     name: z.string(),
-    price: z.optional(z.number()),
+    price: z.optional(z.number().positive()),
     variants: z.optional(z.array(productVariantSchema)),
 });
 
 export const catalogueSchema = z.array(productSchema);
 
 export const buyOfferSchema = z.object({
-    buyQuantity: z.number(),
-    freeQuantity: z.number(),
+    buyQuantity: z.number().nonnegative(),
+    freeQuantity: z.number().nonnegative(),
     freeVariant: z.optional(z.string()),
 });
 
 export const percentageOfferSchema = z.object({
-    percentage: z.number(),
+    percentage: z.number().positive(),
 });
 
 export const offerSchema = z.object({
@@ -29,7 +29,7 @@ export const offerSchema = z.object({
 });
 
 export const basketItemSchema = z.object({
-    quantity: z.optional(z.number()),
+    quantity: z.optional(z.number().positive()),
     name: z.optional(z.string()),
 });
 
